@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rye&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Great+Vibes&family=Momo+Signature&family=Rye&family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="Gemini_Generated_Image_faap9bfaap9bfaap.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<body>
+<div style="max-width: 400px; margin: 20px auto; border-radius: 180px 180px 20px 20px; border: 3px solid #f2c4ce; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); overflow: hidden; background-color: #fbe3eb;">
+    <div class="app-container">
+    
+   <!-- pagina inicial -->
+    <div class="top-banner" id="topBanner">
+        <div class="avatar-frame">
+            <img src="maya (8).png" alt="Maya">
+        </div>
+        <div class="step-indicator-wrapper">
+            <span class="step-badge" id="stepBadge">1 de 5</span>
+
+            <div class="step-progress-bar">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="content">
+
+        <!-- quantidade dos adultos -->
+        <div class="step-page active" id="step1">
+            <h2 class="step-title">Quantos adultos<br>irão comparecer?</h2>
+            <div class="counter-box">
+                <button class="counter-btn" onclick="adjustAdults(-1)">-</button>
+                <div class="counter-value" id="adultCount">1</div>
+                <button class="counter-btn" onclick="adjustAdults(1)">+</button>
+            </div>
+            <p class="step-subtitle">Selecione a quantidade</p>
+            <div class="group-button">
+                <button class="btn-primary" onclick="nextStep(2)">Avançar </button>
+            </div>
+        </div>
+
+        <!-- nome dos adultos -->
+        <div class="step-page" id="step2">
+            <h2 class="step-title">Informe o nome e sobrenome<br>dos adultos</h2>
+            <div id="adultInputsContainer" style="width: 50%;">
+                
+            </div>
+            <button class="btn-add" onclick="addAdultInput()">+ Adicionar outro adulto</button>
+            <div class="button-group">
+                <button class="btn-primary" onclick="nextStep(3)">Avançar </button>
+            <button class="btn-primary" onclick="prevStep(1)" &larr>Voltar</button>
+            </div>
+        </div>
+
+        <!-- levarta crianças -->
+        <div class="step-page" id="step3">
+            <h2 class="step-title">Você irá levar crianças?</h2>
+            <p class="step-subtitle">Selecione apenas uma opção</p>
+            
+            <div class="cards-selection">
+                <div class="select-card" id="cardSim" onclick="toggleKids(true)">
+                    <h4>Sim</h4>
+                </div>
+                <div class="select-card" id="cardNao" onclick="toggleKids(false)">
+                    <h4>Não</h4>
+                </div>
+            </div>
+
+            <div class="group-button">
+            <button class="btn-primary" onclick="handleKidsChoice()">Avançar </button>
+            <button class="btn-primary" onclick="prevStep(2)"&larr >Voltar</button>
+            </div>
+
+        </div>
+
+        <!-- nome das crianças -->
+        <div class="step-page" id="step4">
+            <h2 class="step-title">Informe o nome e idade<br>das crianças</h2>
+            <div id="kidsInputsContainer" style="width: 100%;">
+                
+            </div>
+            <button class="btn-add" onclick="addKidInput()">+ Adicionar outra criança</button>
+            <div class="button-group">
+                <button class="btn-primary" onclick="handleKidsChoice()">Avançar </button>
+            <button class="btn-primary" onclick="prevStep(3)" &larr>Voltar</button>
+            </div>
+        </div>
+
+        <!-- final;ização -->
+        <div class="step-page" id="step5">
+            <h2 class="step-title">Confira suas informações</h2>
+            
+            <div class="summary-card">
+                <div class="summary-item">
+                    <span class="summary-label">Adultos que irão comparecer</span>
+                    <span class="summary-value" id="summaryAdultCount">2 adultos</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Nomes dos adultos</span>
+                    <span class="summary-value" id="summaryAdultNames">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Levará crianças?</span>
+                    <span class="summary-value" id="summaryHasKids">Sim</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Crianças</span>
+                    <span class="summary-value" id="summaryKidsList">-</span>
+                </div>
+            </div>
+
+            <p class="disclaimer">Por favor, revise suas informações antes de confirmar sua presença.</p>
+            
+            <div class="button-group">
+                <button class="btn-primary" onclick="finishRsvp()">Confirmar</button>
+            <button class="btn-primary" onclick="prevStep(4)" &larr>Voltar</button>
+            </div>
+
+        </div>
+        
+        <div class="step-page" id="stepSuccess">
+            <img src="Maya (2)-Photoroom (1).png" alt="">
+            <div class="success-card">
+                <h2>Obrigado!</h2>
+                <p>Sua presença foi confirmada com sucesso!</p>
+                <p>❤️</p>
+                <p>Mal podemos esperar para comemorar este dia tão especial ao seu lado!</p>
+            </div>
+          <button type="button" class="btn-back-invite" onclick="window.location.href='https://mayabomfim.com.br/'">
+     Voltar ao convite
+</button>
+    </div>
+
+    <!-- rodapè -->
+    <div class="footer-scenery">
+        <img src="leao-Photoroom.png" alt="leao" class="scenery-item item-lion">
+        <img src="elefante-Photoroom.png" alt="elefante" class=" scenery-item item-elephant">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

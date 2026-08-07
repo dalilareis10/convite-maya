@@ -1,0 +1,667 @@
+:root {
+    --primary: #ff6b8b;
+    --primary-hover: #f15273;
+    --bg-color: #fff6f8;
+    --card-bg: #ffffff;
+    --text-color: #d85072;
+    --text-muted: #888888;
+    --border-color: #f7c5d3;
+    --input-bg: #fffbfd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff; /* Cor de fundo nas laterais quando aberto no computador */
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 430px;            /* Trava na largura ideal de tela mobile */
+    min-height: 100vh;
+    position: relative;
+    background-color: #fbe3eb;   /* Cor de fundo rosa do seu convite */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .container, main, #app {
+        min-height: 90vh;        /* Transforma em um "card" centralizado no PC */
+        max-height: 880px;
+        border-radius: 28px;     /* Bordas arredondadas elegantes */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12); /* Sombra ao redor */
+        margin: 20px auto;
+
+        
+    }
+}
+
+
+.top-banner {
+    width: 100%;
+    background: #fbe3eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.avatar-frame {
+    width: 500px;
+    height: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.step-indicator-wrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.step-badge {
+    background-color: var(--primary);
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.step-progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    position: relative;
+}
+
+.step-progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #f3c2d0;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #f3c2d0;
+    z-index: 2;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background-color: #cdf3f2;
+    transform: scale(1.2);
+}
+
+
+.content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-title {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    line-height: 1.1;       
+}
+.step-title {
+    color: #c97b8c;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.step-subtitle {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.step-page {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+
+#cardSim.selected, 
+#cardNao.selected {
+    background-color: #f7e9c1 !important;
+    border: 2px solid var(--primary) !important;
+}
+
+.cards-selection{
+    height: 50px;
+}
+
+.cards-selection :hover{
+    background-color: #f7e9c1;
+    color: var(--primary);
+}
+
+.step-page.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.counter-box {
+    display: flex;
+    align-items: center;
+    background-color: #fff0f47c;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    width: 100%;
+    max-width: 260px;
+    margin: 20px 0;
+}
+
+.counter-btn {
+    width: 60px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+    
+}
+
+.counter-value {
+    flex: 1;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+    background-color: #fff0f47c;
+    height: 50px;
+    line-height: 50px;
+}
+
+
+.input-group {
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.input-row {
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: #555;
+    font-size: 13px;
+    outline: none;
+}
+
+input::placeholder {
+    color: #ccc;
+}
+
+
+.btn-add {
+    background-color: transparent;
+    border: 1px dashed var(--primary);
+    color: var(--primary);
+    border-radius: 10px;
+    padding: 8px;
+    width: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 4px;
+    margin-bottom: 15px;
+}
+
+
+.cards-selection {
+    display: flex;
+    gap: 12px;
+    width: 65%;
+    margin: 10px 0 20px;
+}
+
+.select-card {
+    flex: 1;
+    background-color: #fffbfd62;
+    border: 2px solid #c97b8c;
+    border-radius: 16px;
+    padding: 15px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.select-card.selected {
+    border-color: var(--primary);
+    background-color: #fffbfd62;
+}
+
+.img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    background-color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.select-card h4 {
+    color: #c97b8c;
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+.select-card p {
+    color: var(--text-muted);
+    font-size: 10px;
+    text-align: center;
+}
+
+
+.summary-card {
+    background-color: #fff0f4;
+    border-radius: 16px;
+    padding: 15px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px dashed #f5cbe0;
+    font-size: 12px;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    color: var(--text-muted);
+}
+
+.summary-value {
+    color: var(--text-color);
+    font-weight: 600;
+    text-align: right;
+    max-width: 60%;
+}
+
+.disclaimer {
+    font-size: 10px;
+    color: #c97b8c;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.group-button{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 40%;
+    margin-top: auto;
+    transform: translateY(50px);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 40%;
+    margin-top: auto;
+    transform: translateY(50px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #f7e9c1;
+    border: 2px solid var(--primary);
+    border-radius: 20px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #f7e9c1;
+    color: #c97b8c;
+}
+
+.button-group .btn-primary {
+    flex: 2; 
+    margin-top: 0;
+}
+
+.success-card {
+    border: 2px dashed var(--border-color);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #fff;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.success-card h2 {
+    color: var(--text-color);
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.success-card p {
+    color: var(--text-color);
+    font-size: 13px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.app-container {
+    position: relative;
+    overflow: hidden; 
+}
+
+/* rodapè */
+.footer-scenery {
+    position: absolute; 
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 10px 5px;
+    pointer-events: none; 
+    z-index: 1; 
+}
+
+
+.scenery-item {
+    height: 75px;        
+    width: auto;         
+    object-fit: contain;
+}
+
+.item-lion {
+    height: 200px;
+}
+
+.item-elephant {
+    height: 200px;        
+}
+
+
+.content {
+    position: relative;
+    z-index: 10;
+    padding-bottom: 90px;
+}
+
+/* Ajuste de altura e centralização da página de agradecimento */
+#stepSuccess {
+    display: none; /* Mantém oculto até ser ativado */
+    flex-direction: column;
+    justify-content: center; /* Centraliza o cartão verticalmente na tela */
+    align-items: center;
+    min-height: calc(100vh - 180px); /* Preenche a tela respeitando o espaço do rodapé */
+    padding: 20px 0;
+}
+
+#stepSuccess.active {
+    display: flex !important; /* Exibe centralizado ao ativar */
+}
+
+/* Deixa a caixinha mais compacta e delicada */
+#stepSuccess .success-card {
+    max-width: 320px;
+    width: 90%;
+    margin: 0 auto;
+    padding: 24px 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Centralização perfeita da página de agradecimento no meio da tela */
+#stepSuccess.active {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    margin-top: auto;
+    transform: translateY(50px);
+    margin-bottom: auto;
+}
+
+/* Ajuste da caixinha de sucesso */
+#stepSuccess .success-card {
+    max-width: 320px;
+    width: 90%;
+    padding: 28px 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Aumenta e encorpa a caixinha */
+#stepSuccess .success-card {
+    width: 85%;
+    max-width: 360px;
+    padding: 35px 22px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+#stepSuccess .success-card {
+    max-width: 450px;      
+    width: 100%;            
+    padding: 40px 25px;    
+    margin: 20px auto;    
+    border-radius: 20px;   
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+}
+
+
+#stepSuccess .success-card h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+#stepSuccess .success-card p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+#stepSuccess img {
+    position: absolute;
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px !important;
+    height: auto !important;
+    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+
+
+/* Camada da animação de abertura (fica POR CIMA de todo o site) */
+#balloon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Não bloqueia cliques após subir */
+    z-index: 9999; /* Garante que fique na frente de banners e botões */
+    overflow: hidden;
+}
+
+/* Balões da animação de abertura */
+.opening-balloon {
+    position: absolute;
+    bottom: -120px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    opacity: 0.95;
+    box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.39);
+    animation: floatUpAndReveal cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Nó do balão */
+.opening-balloon::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid inherit;
+    border-bottom-color: inherit;
+}
+
+/* Fiozinho do balão */
+.opening-balloon::before {
+    content: "";
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    width: 1.5px;
+    height: 18px;
+    background-color: #c97b8c;
+}
+
+/* Animação de subida cobrindo e revelando */
+@keyframes floatUpAndReveal {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-135vh) scale(1.05) rotate(5deg);
+        opacity: 0;
+    }
+}
+
+
+/* Garante que a tela aceite o posicionamento absoluto do botão */
+#stepSuccess {
+    position: relative;
+}
+
+
+#stepSuccess .btn-back-invite {
+    position: absolute;
+    bottom: -55px;              
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;                
+    margin: 0 !important;       
+    white-space: nowrap;        
+    
+    background: var(--primary);
+    color: #f7e9c1;
+    border: 1.5px solid #f2c4ce;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+#stepSuccess .btn-back-invite:hover {
+    transform: translateX(-50%) translateY(-2px);
+    background-color: #f7e9c1;
+    color: #c97b8c;
+}
+
