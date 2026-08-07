@@ -263,6 +263,18 @@ function updateSummary() {
 
 // pagina final
 function finishRsvp() {
+    // Envia os dados para o e-mail via Web3Forms
+    const formData = new FormData();
+    formData.append("access_key", "d7a7e438-47cb-4ad3-9338-3404a6009ad7");
+    formData.append("subject", "🎉 Nova Confirmação de Presença - Festa da Maya");
+    formData.append("from_name", "Convite da Maya");
+    
+    formData.append("Adultos (" + state.adultsCount + ")", state.adults.filter(n => n && n.trim()).join(", "));
+    formData.append("Crianças", state.hasKids ? state.kids.map(k => `${k.name} (${k.age || '?'} anos)`).join(", ") : "Não");
+
+    fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
+
+    // Mantém exatamente o seu código de transição de telas e comemoração
     const topBanner = document.getElementById('topBanner');
     if (topBanner) topBanner.style.display = 'none';
 
@@ -272,7 +284,6 @@ function finishRsvp() {
     const stepSuccess = document.getElementById('stepSuccess');
     if (stepSuccess) stepSuccess.classList.add('active');
 
-    
     launchCelebration();
 
     console.log("Dados do Formulário:", state);
